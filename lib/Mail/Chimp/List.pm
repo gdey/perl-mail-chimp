@@ -2,7 +2,10 @@ package Mail::Chimp::List;
 use strict;
 use warnings;
 use Moose;
-use MooseX::Types::DateTimeX qw(DateTime);
+# Removing dependence to MooseX::Types::DateTimeX since debian 4.0 (etch) does not support it.
+#  And I'm too lazy to port it. 
+# - Gautam Dey
+#use MooseX::Types::DateTimeX qw(DateTime);
 our $VERSION = '0.2.1';
 
 
@@ -10,7 +13,8 @@ has '_api'                         => (is => 'ro', isa => 'Mail::Chimp::API');
 has 'id'                           => (is => 'ro', isa => 'Str');
 has 'web_id'                       => (is => 'ro', isa => 'Int');
 has 'name'                         => (is => 'ro', isa => 'Str');
-has 'date_created'                 => (is => 'ro', isa => DateTime, coerce => 1);
+#has 'date_created'                 => (is => 'ro', isa => DateTime, coerce => 1);
+has 'date_created'                 => (is => 'ro', isa => 'Str');
 has 'member_count'                 => (is => 'ro', isa => 'Int');
 has 'unsubscribe_count'            => (is => 'ro', isa => 'Int');
 has 'email_type_option'            => (is => 'ro', isa => 'Bool');
